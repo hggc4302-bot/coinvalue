@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoinValue - 金貨・銀貨の価値比較アプリ</title>
+<meta name="description" content="CoinValueは金貨・銀貨の地金価値、発行価格、市場取引価格を比較し、乖離率（プレミアム率）をリアルタイムで確認できるアプリです。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;color:#1D1D1F;background:#fff;line-height:1.7}
+.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(135deg,#FFF8E1 0%,#FFF 50%,#F5F5F7 100%)}
+.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;margin-bottom:16px;letter-spacing:-0.02em}
+.hero .subtitle{font-size:1.1rem;color:#6E6E73;max-width:600px;margin:0 auto 32px}
+.hero .badge{display:inline-block;background:#D4AF37;color:#fff;padding:6px 16px;border-radius:20px;font-size:0.85rem;font-weight:600;margin-bottom:24px}
+.features{max-width:800px;margin:0 auto;padding:40px 20px}
+.features h2{text-align:center;font-size:1.5rem;margin-bottom:32px}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.feature-card{background:#F5F5F7;border-radius:16px;padding:24px;text-align:center}
+.feature-card .icon{font-size:2rem;margin-bottom:12px}
+.feature-card h3{font-size:1rem;margin-bottom:8px}
+.feature-card p{font-size:0.85rem;color:#6E6E73}
+.coins{max-width:800px;margin:0 auto;padding:40px 20px}
+.coins h2{text-align:center;font-size:1.5rem;margin-bottom:16px}
+.coins p{text-align:center;color:#6E6E73;margin-bottom:24px}
+.coin-list{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.coin-tag{background:#fff;border:1px solid #D2D2D7;border-radius:20px;padding:6px 14px;font-size:0.8rem}
+.data-source{max-width:800px;margin:0 auto;padding:40px 20px}
+.data-source h2{text-align:center;font-size:1.5rem;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;font-size:0.9rem}
+th{background:#F5F5F7;padding:10px 12px;text-align:left;font-weight:600;border-bottom:2px solid #D2D2D7}
+td{padding:8px 12px;border-bottom:1px solid #eee}
+.privacy{max-width:800px;margin:0 auto;padding:40px 20px}
+.privacy h2{font-size:1.3rem;margin-bottom:16px}
+.privacy h3{font-size:1rem;margin:16px 0 8px;color:#333}
+.privacy p,.privacy ul{font-size:0.85rem;color:#6E6E73;margin-bottom:8px}
+.privacy ul{padding-left:20px}
+footer{text-align:center;padding:40px 20px;color:#999;font-size:0.75rem;border-top:1px solid #eee;margin-top:40px}
+a{color:#0071E3;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="badge">🥇 Gold & Silver Coin Tracker</div>
+<h1>CoinValue</h1>
+<p class="subtitle">金貨・銀貨の地金価値と市場価格を比較し、<br>プレミアム率（乖離率）をリアルタイムで確認</p>
+</div>
+
+<div class="features">
+<h2>主な機能</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="icon">📊</div>
+<h3>価値比較</h3>
+<p>純金/銀含有量×スポット価格で算出した地金価値と、発行価格・市場取引価格を一目で比較</p>
+</div>
+<div class="feature-card">
+<div class="icon">🥇</div>
+<h3>142枚のコイン</h3>
+<p>日本の記念金貨・銀貨133枚、世界の地金型金貨・銀貨9枚を網羅</p>
+</div>
+<div class="feature-card">
+<div class="icon">💹</div>
+<h3>リアルタイム相場</h3>
+<p>金・銀のスポット価格を1日2回自動更新。金銀比価（GSR）も表示</p>
+</div>
+<div class="feature-card">
+<div class="icon">📐</div>
+<h3>乖離率計算</h3>
+<p>市場取引価格と地金価値の乖離率（プレミアム率）を自動計算</p>
+</div>
+</div>
+</div>
+
+<div class="coins">
+<h2>対応コイン</h2>
+<p>以下の造幣局が発行する金貨・銀貨に対応しています</p>
+<div class="coin-list">
+<span class="coin-tag">🇯🇵 造幣局（記念金貨・銀貨）</span>
+<span class="coin-tag">🇨🇦 メイプルリーフ</span>
+<span class="coin-tag">🇺🇸 アメリカンイーグル</span>
+<span class="coin-tag">🇦🇹 ウィーン・フィル</span>
+<span class="coin-tag">🇦🇺 カンガルー</span>
+<span class="coin-tag">🇬🇧 ブリタニア</span>
+</div>
+</div>
+
+<div class="data-source">
+<h2>データソース</h2>
+<table>
+<thead><tr><th>データ</th><th>ソース</th><th>更新頻度</th></tr></thead>
+<tbody>
+<tr><td>金・銀スポット価格</td><td>GoldAPI.io</td><td>1日2回</td></tr>
+<tr><td>日本記念貨幣データ</td><td>造幣局（Japan Mint）公式</td><td>新規発行時</td></tr>
+<tr><td>海外地金型コインデータ</td><td>各国造幣局公式情報</td><td>年次更新</td></tr>
+<tr><td>市場取引価格</td><td>楽天市場 等</td><td>定期更新</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="privacy" id="privacy">
+<h2>プライバシーポリシー</h2>
+<p>最終更新日: 2026年4月25日</p>
+
+<h3>1. はじめに</h3>
+<p>「CoinValue」（以下「本アプリ」）は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。</p>
+
+<h3>2. 収集する情報</h3>
+<p>本アプリは以下の情報を収集する場合があります：</p>
+<ul>
+<li>アプリの利用状況（閲覧したコイン、利用頻度等）を匿名で収集する場合があります</li>
+<li>広告を表示する場合、広告配信事業者がCookieを使用することがあります</li>
+</ul>
+
+<h3>3. 情報の使用目的</h3>
+<p>収集した情報はアプリの機能提供・改善、広告の表示のみに使用します。</p>
+
+<h3>4. 第三者への提供</h3>
+<p>法令に基づく場合を除き、ユーザーの個人情報を第三者に提供・販売することはありません。</p>
+
+<h3>5. データの保護</h3>
+<p>ユーザーデータは端末内にのみ保存します。外部サーバーに個人情報を送信・保管することはありません。</p>
+
+<h3>6. 免責事項</h3>
+<p>本アプリで提供される価格データは参考情報であり、正確性・完全性を保証するものではありません。貴金属の売買判断は自己責任で行ってください。</p>
+
+<h3>7. お問い合わせ</h3>
+<p>本プライバシーポリシーに関するご質問は、App Storeのアプリページよりお問い合わせください。</p>
+
+<h3>8. 楽天アフィリエイトについて</h3>
+<p>本アプリは楽天アフィリエイトプログラムに参加しています。アプリ内で楽天市場の商品情報・価格を表示し、楽天市場へのリンクを提供しています。ユーザーが楽天市場で商品を購入した場合、当方がアフィリエイト報酬を受け取ることがあります。</p>
+</div>
+
+<div class="privacy" id="terms">
+<h2>利用規約</h2>
+<p>最終更新日: 2026年4月25日</p>
+
+<h3>1. サービスの概要</h3>
+<p>本アプリは金貨・銀貨の価格情報を提供するアプリケーションです。</p>
+
+<h3>2. 免責事項</h3>
+<p>本アプリの情報は参考情報であり、投資助言ではありません。貴金属の売買判断により生じた損害について、当方は一切の責任を負いません。</p>
+
+<h3>3. 準拠法</h3>
+<p>本利用規約は日本法に準拠します。</p>
+</div>
+
+<footer>
+<p>&copy; 2026 CoinValue. All rights reserved.</p>
+<p>画像出典: 造幣局、Wikimedia Commons、Perth Mint</p>
+<p><a href="#privacy">プライバシーポリシー</a> | <a href="#terms">利用規約</a></p>
+</footer>
+
+</body>
+</html>
