@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hggc4302-bot.github.io/coinvalue/sitemap.xml
